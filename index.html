@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -5,21 +7,22 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>mockfs – A simple mock filesystem for unit tests &mdash; mockfs v0.5.0 documentation</title>
+    <title>mockfs – A simple mock filesystem for unit tests &mdash; mockfs v0.9.0 documentation</title>
     <link rel="stylesheet" href="static/default.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.5.0',
-        COLLAPSE_MODINDEX: false,
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="mockfs v0.5.0 documentation" href="" />
+    <link rel="top" title="mockfs v0.9.0 documentation" href="#" />
     <link rel="next" title="os.path and glob Implementations" href="api.html" /> 
   </head>
   <body>
@@ -30,12 +33,12 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="modindex.html" title="Global Module Index"
-             accesskey="M">modules</a> |</li>
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="right" >
           <a href="api.html" title="os.path and glob Implementations"
              accesskey="N">next</a> |</li>
-        <li><a href="">mockfs v0.5.0 documentation</a> &raquo;</li> 
+        <li><a href="#">mockfs v0.9.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -45,73 +48,108 @@
           <div class="body">
             
   <div class="section" id="mockfs-a-simple-mock-filesystem-for-unit-tests">
-<h1><tt class="xref docutils literal"><span class="pre">mockfs</span></tt> &#8211; A simple mock filesystem for unit tests<a class="headerlink" href="#mockfs-a-simple-mock-filesystem-for-unit-tests" title="Permalink to this headline">¶</a></h1>
+<h1><tt class="xref py py-mod docutils literal"><span class="pre">mockfs</span></tt> &#8211; A simple mock filesystem for unit tests<a class="headerlink" href="#mockfs-a-simple-mock-filesystem-for-unit-tests" title="Permalink to this headline">¶</a></h1>
 <p><cite>mockfs</cite> makes it possible to test filesystem-dependent code by
-replacing functions from the <tt class="docutils literal"><span class="pre">os</span></tt> and <tt class="docutils literal"><span class="pre">glob</span></tt> modules.</p>
+replacing functions from the <a class="reference external" href="http://docs.python.org/library/os.html#os" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">os</span></tt></a> and <a class="reference external" href="http://docs.python.org/library/glob.html#glob" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">glob</span></tt></a> modules.</p>
 <div class="section" id="example-unit-test">
 <h2>Example Unit Test<a class="headerlink" href="#example-unit-test" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mockfs</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mockfs</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mockfs</span><span class="o">.</span><span class="n">add_entries</span><span class="p">({</span><span class="s">&#39;/new/magic&#39;</span><span class="p">:</span> <span class="s">&#39;&#39;</span><span class="p">})</span>
+<span class="kn">import</span> <span class="nn">mockfs</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">&#39;/new&#39;</span><span class="p">)</span>
-<span class="go">True</span>
+<span class="k">class</span> <span class="nc">ExampleTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mfs</span> <span class="o">=</span> <span class="n">mockfs</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mfs</span><span class="o">.</span><span class="n">add_entries</span><span class="p">({</span><span class="s">&#39;/usr/bin/mockfs-magic&#39;</span><span class="p">:</span> <span class="s">&#39;magic&#39;</span><span class="p">})</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&#39;/new&#39;</span><span class="p">)</span>
-<span class="go">[&#39;magic&#39;]</span>
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">mockfs</span><span class="o">.</span><span class="n">teardown</span><span class="p">()</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">&#39;/bin&#39;</span><span class="p">)</span>
-<span class="go">False</span>
+    <span class="k">def</span> <span class="nf">test_using_os_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&#39;/usr/bin&#39;</span><span class="p">),</span> <span class="p">[</span><span class="s">&#39;mockfs-magic&#39;</span><span class="p">])</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mockfs</span><span class="o">.</span><span class="n">uninstall</span><span class="p">()</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">&#39;/new&#39;</span><span class="p">)</span>
-<span class="go">False</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">&#39;/bin&#39;</span><span class="p">)</span>
-<span class="go">True</span>
+    <span class="k">def</span> <span class="nf">test_using_open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;/usr/bin/mockfs-magic&#39;</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">&#39;magic&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Currently supported functions:</p>
+<ul class="simple">
+<li><tt class="xref py py-func docutils literal"><span class="pre">__builtins__.open()</span></tt></li>
+<li><tt class="xref py py-func docutils literal"><span class="pre">__builtins__.close()</span></tt></li>
+<li><a class="reference external" href="http://docs.python.org/library/glob.html#glob.glob" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">glob.glob()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.html#os.chdir" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.chdir()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.html#os.getcwd" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.getcwd()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.html#os.getcwdu" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.getcwdu()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.html#os.listdir" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.listdir()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.html#os.makedirs" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.makedirs()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.path.html#os.path.abspath" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.path.abspath()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.path.html#os.path.exists" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.path.exists()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.path.html#os.path.getsize" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.path.getsize()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.path.html#os.path.islink" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.path.islink()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.path.html#os.path.isdir" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.path.isdir()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.path.html#os.path.isfile" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.path.isfile()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.html#os.remove" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.remove()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.html#os.rmdir" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.rmdir()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.html#os.unlink" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.unlink()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/os.html#os.walk" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.walk()</span></tt></a></li>
+<li><a class="reference external" href="http://docs.python.org/library/shutil.html#shutil.rmtree" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">shutil.rmtree()</span></tt></a></li>
+</ul>
 <dl class="function">
-<dt id="mockfs.install">
-<tt class="descclassname">mockfs.</tt><tt class="descname">install</tt><big>(</big><em>entries=None</em>, <em>pathmap=None</em><big>)</big><a class="headerlink" href="#mockfs.install" title="Permalink to this definition">¶</a></dt>
-<dd><p>Replace builtin modules with mockfs equivalents.</p>
+<dt id="mockfs.setup">
+<tt class="descclassname">mockfs.</tt><tt class="descname">setup</tt><big>(</big><em>entries=None</em><big>)</big><a class="headerlink" href="#mockfs.setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace builtin functions with mockfs.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field"><th class="field-name">Parameter:</th><td class="field-body"><em>entries</em> &#8211; Dictionary mapping paths to content</td>
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entries</strong> &#8211; Dictionary mapping paths to content</td>
+</tr>
+<tr class="field"><th class="field-name">Rtype MockFS:</th><td class="field-body">Newly installed <tt class="xref py py-class docutils literal"><span class="pre">mockfs.MockFS</span></tt> handler</td>
 </tr>
 </tbody>
 </table>
 <p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">install</span><span class="p">({</span><span class="s">&#39;/bin/ls&#39;</span><span class="p">:</span> <span class="s">&#39;content&#39;</span><span class="p">})</span>
-</pre></div>
+<div class="highlight-python"><pre>import os
+import mockfs
+
+fs = mockfs.setup()
+fs.add_entries({
+        '/bin/sh': 'contents',
+        '/bin/ls': 'contents',
+])
+assert(os.listdir('/bin') == ['ls', 'sh'])
+
+mockfs.teardown()</pre>
 </div>
 </dd></dl>
 
 <dl class="function">
-<dt id="mockfs.uninstall">
-<tt class="descclassname">mockfs.</tt><tt class="descname">uninstall</tt><big>(</big><big>)</big><a class="headerlink" href="#mockfs.uninstall" title="Permalink to this definition">¶</a></dt>
-<dd>Restore the original builtin functions.</dd></dl>
+<dt id="mockfs.teardown">
+<tt class="descclassname">mockfs.</tt><tt class="descname">teardown</tt><big>(</big><big>)</big><a class="headerlink" href="#mockfs.teardown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore the original builtin functions.</p>
+</dd></dl>
 
 </div>
 <div class="section" id="developer-documentation">
 <h2>Developer Documentation<a class="headerlink" href="#developer-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference external" href="api.html"><tt class="docutils literal"><span class="pre">os.path</span></tt> and <tt class="docutils literal"><span class="pre">glob</span></tt> Implementations</a></li>
-<li class="toctree-l1"><a class="reference external" href="api.html#module-mockfs.storage">File Storage and IO</a></li>
-<li class="toctree-l1"><a class="reference external" href="api.html#module-mockfs.data">Internal Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html"><tt class="docutils literal"><span class="pre">os.path</span></tt> and <tt class="docutils literal"><span class="pre">glob</span></tt> Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-mockfs.util">Utility Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#module-mockfs.storage">File Storage and IO</a></li>
 </ul>
+</div>
 </div>
 <div class="section" id="indices-and-tables">
 <h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="genindex.html"><em>Index</em></a></li>
-<li><a class="reference external" href="modindex.html"><em>Module Index</em></a></li>
-<li><a class="reference external" href="search.html"><em>Search Page</em></a></li>
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
 </ul>
 </div>
 </div>
@@ -122,39 +160,39 @@ replacing functions from the <tt class="docutils literal"><span class="pre">os</
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href=""><tt class="docutils literal"><span class="pre">mockfs</span></tt> &#8211; A simple mock filesystem for unit tests</a><ul>
-<li><a class="reference external" href="#example-unit-test">Example Unit Test</a></li>
-<li><a class="reference external" href="#developer-documentation">Developer Documentation</a><ul>
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><tt class="docutils literal"><span class="pre">mockfs</span></tt> &#8211; A simple mock filesystem for unit tests</a><ul>
+<li><a class="reference internal" href="#example-unit-test">Example Unit Test</a></li>
+<li><a class="reference internal" href="#developer-documentation">Developer Documentation</a><ul>
 </ul>
 </li>
-<li><a class="reference external" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 </li>
 </ul>
 
-            <h4>Next topic</h4>
-            <p class="topless"><a href="api.html"
-                                  title="next chapter"><tt class="docutils literal docutils literal"><span class="pre">os.path</span></tt> and <tt class="docutils literal docutils literal"><span class="pre">glob</span></tt> Implementations</a></p>
-            <h3>This Page</h3>
-            <ul class="this-page-menu">
-              <li><a href="sources/index.txt"
-                     rel="nofollow">Show Source</a></li>
-            </ul>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="next chapter"><tt class="docutils literal docutils literal"><span class="pre">os.path</span></tt> and <tt class="docutils literal docutils literal"><span class="pre">glob</span></tt> Implementations</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -166,17 +204,17 @@ replacing functions from the <tt class="docutils literal"><span class="pre">os</
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="modindex.html" title="Global Module Index"
+          <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
           <a href="api.html" title="os.path and glob Implementations"
              >next</a> |</li>
-        <li><a href="">mockfs v0.5.0 documentation</a> &raquo;</li> 
+        <li><a href="#">mockfs v0.9.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-      &copy; Copyright 2009, David Aguilar.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+        &copy; Copyright 2009, David Aguilar.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
 </html>

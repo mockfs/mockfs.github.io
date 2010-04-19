@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -5,21 +7,22 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>os.path and glob Implementations &mdash; mockfs v0.5.0 documentation</title>
+    <title>os.path and glob Implementations &mdash; mockfs v0.9.0 documentation</title>
     <link rel="stylesheet" href="static/default.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.5.0',
-        COLLAPSE_MODINDEX: false,
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
     <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="mockfs v0.5.0 documentation" href="index.html" />
+    <link rel="top" title="mockfs v0.9.0 documentation" href="index.html" />
     <link rel="prev" title="mockfs – A simple mock filesystem for unit tests" href="index.html" /> 
   </head>
   <body>
@@ -30,12 +33,12 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="modindex.html" title="Global Module Index"
-             accesskey="M">modules</a> |</li>
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="right" >
           <a href="index.html" title="mockfs – A simple mock filesystem for unit tests"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">mockfs v0.5.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">mockfs v0.9.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -44,71 +47,227 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="module-mockfs.main">
-<span id="mockfs-api"></span><h1><tt class="docutils literal"><span class="pre">os.path</span></tt> and <tt class="docutils literal"><span class="pre">glob</span></tt> Implementations<a class="headerlink" href="#module-mockfs.main" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-mockfs.mfs">
+<span id="os-path-and-glob-implementations"></span><span id="mockfs-api"></span><h1><tt class="docutils literal"><span class="pre">os.path</span></tt> and <tt class="docutils literal"><span class="pre">glob</span></tt> Implementations<a class="headerlink" href="#module-mockfs.mfs" title="Permalink to this headline">¶</a></h1>
 <p>mockfs: A simple mock filesystem for unit tests.</p>
 <dl class="class">
-<dt id="mockfs.main.MockFS">
-<em class="property">class </em><tt class="descclassname">mockfs.main.</tt><tt class="descname">MockFS</tt><big>(</big><em>entries=None</em>, <em>pathmap=None</em><big>)</big><a class="headerlink" href="#mockfs.main.MockFS" title="Permalink to this definition">¶</a></dt>
-<dd><p>Provides implementations for functions in <tt class="docutils literal"><span class="pre">os</span></tt>, <tt class="docutils literal"><span class="pre">os.path</span></tt>, and <tt class="docutils literal"><span class="pre">glob</span></tt>.</p>
-<dl class="method">
-<dt id="mockfs.main.MockFS.add_entries">
-<tt class="descname">add_entries</tt><big>(</big><em>entries</em><big>)</big><a class="headerlink" href="#mockfs.main.MockFS.add_entries" title="Permalink to this definition">¶</a></dt>
-<dd>Add new entries to mockfs.</dd></dl>
-
-<dl class="method">
-<dt id="mockfs.main.MockFS.direntry">
-<tt class="descname">direntry</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.main.MockFS.direntry" title="Permalink to this definition">¶</a></dt>
+<dt id="mockfs.mfs.Cwd">
+<em class="property">class </em><tt class="descclassname">mockfs.mfs.</tt><tt class="descname">Cwd</tt><big>(</big><em>mfs</em><big>)</big><a class="headerlink" href="#mockfs.mfs.Cwd" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="mockfs.mfs.Cwd.chdir">
+<tt class="descname">chdir</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.mfs.Cwd.chdir" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="mockfs.main.MockFS.exists">
-<tt class="descname">exists</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.main.MockFS.exists" title="Permalink to this definition">¶</a></dt>
+<dt id="mockfs.mfs.Cwd.getcwd">
+<tt class="descname">getcwd</tt><big>(</big><big>)</big><a class="headerlink" href="#mockfs.mfs.Cwd.getcwd" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="mockfs.main.MockFS.isdir">
-<tt class="descname">isdir</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.main.MockFS.isdir" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="mockfs.main.MockFS.isfile">
-<tt class="descname">isfile</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.main.MockFS.isfile" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="mockfs.main.MockFS.islink">
-<tt class="descname">islink</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.main.MockFS.islink" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="mockfs.main.MockFS.listdir">
-<tt class="descname">listdir</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.main.MockFS.listdir" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="mockfs.main.MockFS.walk">
-<tt class="descname">walk</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.main.MockFS.walk" title="Permalink to this definition">¶</a></dt>
+<dt id="mockfs.mfs.Cwd.getcwdu">
+<tt class="descname">getcwdu</tt><big>(</big><big>)</big><a class="headerlink" href="#mockfs.mfs.Cwd.getcwdu" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="mockfs.mfs.MockFS">
+<em class="property">class </em><tt class="descclassname">mockfs.mfs.</tt><tt class="descname">MockFS</tt><a class="headerlink" href="#mockfs.mfs.MockFS" title="Permalink to this definition">¶</a></dt>
+<dd><p>MockFS implementation object</p>
+<p>Provides stubs for functions in <a class="reference external" href="http://docs.python.org/library/os.html#os" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">os</span></tt></a>, <a class="reference external" href="http://docs.python.org/library/os.path.html#os.path" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">os.path</span></tt></a>, and <a class="reference external" href="http://docs.python.org/library/glob.html#glob" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">glob</span></tt></a>.</p>
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.abspath">
+<tt class="descname">abspath</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.abspath" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.add_entries">
+<tt class="descname">add_entries</tt><big>(</big><em>entries</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.add_entries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new entries to mockfs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.copytree">
+<tt class="descname">copytree</tt><big>(</big><em>src</em>, <em>dst</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.copytree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy a directory subtree</p>
+<p>Implements the <a class="reference external" href="http://docs.python.org/library/shutil.html#shutil.copytree" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">shutil.copytree()</span></tt></a> interface.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.exists">
+<tt class="descname">exists</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if path exists</p>
+<p>Implements the <a class="reference external" href="http://docs.python.org/library/os.path.html#os.path.exists" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.path.exists()</span></tt></a> interface.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.getsize">
+<tt class="descname">getsize</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.getsize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the size of a file, reported by os.stat().</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.glob">
+<tt class="descname">glob</tt><big>(</big><em>pattern</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.glob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of <a class="reference external" href="http://docs.python.org/library/glob.html#glob.glob" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">glob.glob()</span></tt></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.isdir">
+<tt class="descname">isdir</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.isdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if path is a directory</p>
+<p>Implements the <a class="reference external" href="http://docs.python.org/library/os.path.html#os.path.isdir" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.path.isdir()</span></tt></a> interface.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.isfile">
+<tt class="descname">isfile</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.isfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if path is a file</p>
+<p>Implements the <a class="reference external" href="http://docs.python.org/library/os.path.html#os.path.isfile" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.path.isfile()</span></tt></a> interface.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.islink">
+<tt class="descname">islink</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.islink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if path is a symlink</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently hard-wired to return False</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.listdir">
+<tt class="descname">listdir</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.listdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the directory contents of &#8216;path&#8217;</p>
+<p>Implements the <a class="reference external" href="http://docs.python.org/library/os.html#os.listdir" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.listdir()</span></tt></a> interface.
+:param path: filesystem path</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.makedirs">
+<tt class="descname">makedirs</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.makedirs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create directory entries for a path</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.read">
+<tt class="descname">read</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.remove">
+<tt class="descname">remove</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the entry for a file path</p>
+<p>Implements the <a class="reference external" href="http://docs.python.org/library/os.html#os.remove" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.remove()</span></tt></a> interface.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.rmdir">
+<tt class="descname">rmdir</tt><big>(</big><em>fspath</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.rmdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the entry for a directory path</p>
+<p>Implements the <a class="reference external" href="http://docs.python.org/library/os.html#os.rmdir" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.rmdir()</span></tt></a> interface.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.rmtree">
+<tt class="descname">rmtree</tt><big>(</big><em>path</em>, <em>ignore_errors=False</em>, <em>onerror=None</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.rmtree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively delete a directory tree.</p>
+<p>If ignore_errors is set, errors are ignored; otherwise, if onerror
+is set, it is called to handle the error with arguments (func,
+path, exc_info) where func is os.listdir, os.remove, or os.rmdir;
+path is the argument to that function that caused it to fail; and
+exc_info is a tuple returned by sys.exc_info().  If ignore_errors
+is false and onerror is None, an exception is raised.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.MockFS.walk">
+<tt class="descname">walk</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.mfs.MockFS.walk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Walk a filesystem path</p>
+<p>Implements the <a class="reference external" href="http://docs.python.org/library/os.html#os.walk" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.walk()</span></tt></a> interface.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mockfs.mfs.StorageBackend">
+<em class="property">class </em><tt class="descclassname">mockfs.mfs.</tt><tt class="descname">StorageBackend</tt><big>(</big><em>mfs</em><big>)</big><a class="headerlink" href="#mockfs.mfs.StorageBackend" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="mockfs.mfs.StorageBackend.CheckForFile">
+<tt class="descname">CheckForFile</tt><big>(</big><em>filename</em><big>)</big><a class="headerlink" href="#mockfs.mfs.StorageBackend.CheckForFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.StorageBackend.DeleteFile">
+<tt class="descname">DeleteFile</tt><big>(</big><em>filename</em><big>)</big><a class="headerlink" href="#mockfs.mfs.StorageBackend.DeleteFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.StorageBackend.LoadFile">
+<tt class="descname">LoadFile</tt><big>(</big><em>filename</em><big>)</big><a class="headerlink" href="#mockfs.mfs.StorageBackend.LoadFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mockfs.mfs.StorageBackend.SaveFile">
+<tt class="descname">SaveFile</tt><big>(</big><em>filename</em>, <em>data</em><big>)</big><a class="headerlink" href="#mockfs.mfs.StorageBackend.SaveFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mockfs.util">
+<span id="utility-functions"></span><h1>Utility Functions<a class="headerlink" href="#module-mockfs.util" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="mockfs.main.build_nested_dict">
-<tt class="descclassname">mockfs.main.</tt><tt class="descname">build_nested_dict</tt><big>(</big><em>entries</em><big>)</big><a class="headerlink" href="#mockfs.main.build_nested_dict" title="Permalink to this definition">¶</a></dt>
-<dd>Convert a flat dict of paths to a nested dict.</dd></dl>
+<dt id="mockfs.util.build_nested_dict">
+<tt class="descclassname">mockfs.util.</tt><tt class="descname">build_nested_dict</tt><big>(</big><em>entries</em><big>)</big><a class="headerlink" href="#mockfs.util.build_nested_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a flat dict of paths to a nested dict</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entries</strong> (<tt class="xref py py-data docutils literal"><span class="pre">dict</span></tt>) &#8211; Path to entry dictionary</td>
+</tr>
+</tbody>
+</table>
+<p>e.g. <cite>{&#8216;/unix/path&#8217;: &#8216;content&#8217;, &#8216;/unix/dir&#8217;: {},}</cite></p>
+</dd></dl>
 
 <dl class="function">
-<dt id="mockfs.main.merge_dicts">
-<tt class="descclassname">mockfs.main.</tt><tt class="descname">merge_dicts</tt><big>(</big><em>src</em>, <em>dst</em><big>)</big><a class="headerlink" href="#mockfs.main.merge_dicts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a new dictionary with entries from A merged into B.</p>
+<dt id="mockfs.util.build_nested_dir_dict">
+<tt class="descclassname">mockfs.util.</tt><tt class="descname">build_nested_dir_dict</tt><big>(</big><em>dirpath</em><big>)</big><a class="headerlink" href="#mockfs.util.build_nested_dir_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a nested dict of dicts from a directory path</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dirpath</strong> (<tt class="xref py py-data docutils literal"><span class="pre">str</span></tt>) &#8211; Directory path</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mockfs.util.is_dir">
+<tt class="descclassname">mockfs.util.</tt><tt class="descname">is_dir</tt><big>(</big><em>entry</em><big>)</big><a class="headerlink" href="#mockfs.util.is_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mockfs.util.is_file">
+<tt class="descclassname">mockfs.util.</tt><tt class="descname">is_file</tt><big>(</big><em>entry</em><big>)</big><a class="headerlink" href="#mockfs.util.is_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mockfs.util.merge_dicts">
+<tt class="descclassname">mockfs.util.</tt><tt class="descname">merge_dicts</tt><big>(</big><em>src</em>, <em>dst</em><big>)</big><a class="headerlink" href="#mockfs.util.merge_dicts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge entries from &#8216;src&#8217; into &#8216;dst&#8217;.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><em>src</em> &#8211; source dictionary</li>
-<li><em>dst</em> &#8211; destination dictionary</li>
+<li><strong>src</strong> &#8211; source dictionary</li>
+<li><strong>dst</strong> &#8211; destination dictionary</li>
 </ul>
 </td>
 </tr>
@@ -117,26 +276,16 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="mockfs.main.sanitize">
-<tt class="descclassname">mockfs.main.</tt><tt class="descname">sanitize</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.main.sanitize" title="Permalink to this definition">¶</a></dt>
+<dt id="mockfs.util.sanitize">
+<tt class="descclassname">mockfs.util.</tt><tt class="descname">sanitize</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#mockfs.util.sanitize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clean up path arguments for use with MockFS</p>
 <p>MockFS isn&#8217;t happy with trailing slashes since it uses a dict
 to simulate the file system.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="mockfs.main.singleton">
-<tt class="descclassname">mockfs.main.</tt><tt class="descname">singleton</tt><big>(</big><em>entries=None</em>, <em>pathmap=None</em><big>)</big><a class="headerlink" href="#mockfs.main.singleton" title="Permalink to this definition">¶</a></dt>
-<dd>Return a global MockFS singleton.</dd></dl>
-
-<dl class="function">
-<dt id="mockfs.main.uninstall">
-<tt class="descclassname">mockfs.main.</tt><tt class="descname">uninstall</tt><big>(</big><big>)</big><a class="headerlink" href="#mockfs.main.uninstall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </div>
 <div class="section" id="module-mockfs.storage">
-<h1>File Storage and IO<a class="headerlink" href="#module-mockfs.storage" title="Permalink to this headline">¶</a></h1>
+<span id="file-storage-and-io"></span><h1>File Storage and IO<a class="headerlink" href="#module-mockfs.storage" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="mockfs.storage.file">
 <em class="property">class </em><tt class="descclassname">mockfs.storage.</tt><tt class="descname">file</tt><big>(</big><em>name</em>, <em>mode='r'</em><big>)</big><a class="headerlink" href="#mockfs.storage.file" title="Permalink to this definition">¶</a></dt>
@@ -160,17 +309,20 @@ may return an exit status upon closing.</p>
 <dl class="attribute">
 <dt id="mockfs.storage.file.closed">
 <tt class="descname">closed</tt><a class="headerlink" href="#mockfs.storage.file.closed" title="Permalink to this definition">¶</a></dt>
-<dd>True if the file is closed</dd></dl>
+<dd><p>True if the file is closed</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="mockfs.storage.file.encoding">
 <tt class="descname">encoding</tt><a class="headerlink" href="#mockfs.storage.file.encoding" title="Permalink to this definition">¶</a></dt>
-<dd>file encoding</dd></dl>
+<dd><p>file encoding</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="mockfs.storage.file.errors">
 <tt class="descname">errors</tt><a class="headerlink" href="#mockfs.storage.file.errors" title="Permalink to this definition">¶</a></dt>
-<dd>Unicode error handler</dd></dl>
+<dd><p>Unicode error handler</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="mockfs.storage.file.fileno">
@@ -182,36 +334,42 @@ may return an exit status upon closing.</p>
 <dl class="method">
 <dt id="mockfs.storage.file.flush">
 <tt class="descname">flush</tt><big>(</big><big>)</big><a class="headerlink" href="#mockfs.storage.file.flush" title="Permalink to this definition">¶</a></dt>
-<dd>flush() -&gt; None.  Flush the internal I/O buffer.</dd></dl>
+<dd><p>flush() -&gt; None.  Flush the internal I/O buffer.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="mockfs.storage.file.isatty">
 <tt class="descname">isatty</tt><big>(</big><big>)</big><a class="headerlink" href="#mockfs.storage.file.isatty" title="Permalink to this definition">¶</a></dt>
-<dd>isatty() -&gt; true or false.  True if the file is connected to a tty device.</dd></dl>
+<dd><p>isatty() -&gt; true or false.  True if the file is connected to a tty device.</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="mockfs.storage.file.mode">
 <tt class="descname">mode</tt><a class="headerlink" href="#mockfs.storage.file.mode" title="Permalink to this definition">¶</a></dt>
-<dd>file mode, one of r(+)(b), w(+)(b) or a(+)(b)</dd></dl>
+<dd><p>file mode, one of r(+)(b), w(+)(b) or a(+)(b)</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="mockfs.storage.file.name">
 <tt class="descname">name</tt><a class="headerlink" href="#mockfs.storage.file.name" title="Permalink to this definition">¶</a></dt>
-<dd>file name</dd></dl>
+<dd><p>file name</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="mockfs.storage.file.newlines">
 <tt class="descname">newlines</tt><a class="headerlink" href="#mockfs.storage.file.newlines" title="Permalink to this definition">¶</a></dt>
-<dd>end-of-line convention used in this file</dd></dl>
+<dd><p>end-of-line convention used in this file</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="mockfs.storage.file.next">
 <tt class="descname">next</tt><big>(</big><big>)</big><a class="headerlink" href="#mockfs.storage.file.next" title="Permalink to this definition">¶</a></dt>
-<dd>x.next() -&gt; the next value, or raise StopIteration</dd></dl>
+<dd><p>x.next() -&gt; the next value, or raise StopIteration</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="mockfs.storage.file.read">
-<tt class="descname">read</tt><big>(</big><em>size=&lt;object object at 0x7f5a37adc2f0&gt;</em><big>)</big><a class="headerlink" href="#mockfs.storage.file.read" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">read</tt><big>(</big><em>size=&lt;object object at 0x10042b440&gt;</em><big>)</big><a class="headerlink" href="#mockfs.storage.file.read" title="Permalink to this definition">¶</a></dt>
 <dd><p>read([size]) -&gt; read at most size bytes, returned as a string.</p>
 <p>If the size argument is negative or omitted, read until EOF is reached.
 Notice that when in non-blocking mode, less data than what was requested
@@ -220,7 +378,7 @@ may be returned, even if no size parameter was given.</p>
 
 <dl class="method">
 <dt id="mockfs.storage.file.readline">
-<tt class="descname">readline</tt><big>(</big><em>size=&lt;object object at 0x7f5a37adc2f0&gt;</em><big>)</big><a class="headerlink" href="#mockfs.storage.file.readline" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">readline</tt><big>(</big><em>size=&lt;object object at 0x10042b440&gt;</em><big>)</big><a class="headerlink" href="#mockfs.storage.file.readline" title="Permalink to this definition">¶</a></dt>
 <dd><p>readline([size]) -&gt; next line from the file, as a string.</p>
 <p>Retain newline.  A non-negative size argument limits the maximum
 number of bytes to return (an incomplete line may be returned then).
@@ -229,7 +387,7 @@ Return an empty string at EOF.</p>
 
 <dl class="method">
 <dt id="mockfs.storage.file.readlines">
-<tt class="descname">readlines</tt><big>(</big><em>size=&lt;object object at 0x7f5a37adc2f0&gt;</em><big>)</big><a class="headerlink" href="#mockfs.storage.file.readlines" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">readlines</tt><big>(</big><em>size=&lt;object object at 0x10042b440&gt;</em><big>)</big><a class="headerlink" href="#mockfs.storage.file.readlines" title="Permalink to this definition">¶</a></dt>
 <dd><p>readlines([size]) -&gt; list of strings, each a line from the file.</p>
 <p>Call readline() repeatedly and return a list of the lines so read.
 The optional size argument, if given, is an approximate bound on the
@@ -253,16 +411,18 @@ Note that not all file objects are seekable.</p>
 <dl class="attribute">
 <dt id="mockfs.storage.file.softspace">
 <tt class="descname">softspace</tt><a class="headerlink" href="#mockfs.storage.file.softspace" title="Permalink to this definition">¶</a></dt>
-<dd>flag indicating that a space needs to be printed; used by print</dd></dl>
+<dd><p>flag indicating that a space needs to be printed; used by print</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="mockfs.storage.file.tell">
 <tt class="descname">tell</tt><big>(</big><big>)</big><a class="headerlink" href="#mockfs.storage.file.tell" title="Permalink to this definition">¶</a></dt>
-<dd>tell() -&gt; current file position, an integer (may be a long integer).</dd></dl>
+<dd><p>tell() -&gt; current file position, an integer (may be a long integer).</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="mockfs.storage.file.truncate">
-<tt class="descname">truncate</tt><big>(</big><em>size=&lt;object object at 0x7f5a37adc2f0&gt;</em><big>)</big><a class="headerlink" href="#mockfs.storage.file.truncate" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">truncate</tt><big>(</big><em>size=&lt;object object at 0x10042b440&gt;</em><big>)</big><a class="headerlink" href="#mockfs.storage.file.truncate" title="Permalink to this definition">¶</a></dt>
 <dd><p>truncate([size]) -&gt; None.  Truncate the file to at most size bytes.</p>
 <p>Size defaults to the current file position, as returned by tell().</p>
 </dd></dl>
@@ -304,17 +464,20 @@ preferred way to open a file.</p>
 <dl class="function">
 <dt id="mockfs.storage.replace_builtins">
 <tt class="descclassname">mockfs.storage.</tt><tt class="descname">replace_builtins</tt><big>(</big><big>)</big><a class="headerlink" href="#mockfs.storage.replace_builtins" title="Permalink to this definition">¶</a></dt>
-<dd>replace file and open in the builtin module</dd></dl>
+<dd><p>replace file and open in the builtin module</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="mockfs.storage.restore_builtins">
 <tt class="descclassname">mockfs.storage.</tt><tt class="descname">restore_builtins</tt><big>(</big><big>)</big><a class="headerlink" href="#mockfs.storage.restore_builtins" title="Permalink to this definition">¶</a></dt>
-<dd>restore the original file and open to the builtin module</dd></dl>
+<dd><p>restore the original file and open to the builtin module</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="mockfs.storage.original_file">
 <tt class="descclassname">mockfs.storage.</tt><tt class="descname">original_file</tt><a class="headerlink" href="#mockfs.storage.original_file" title="Permalink to this definition">¶</a></dt>
-<dd>alias of <a title="mockfs.storage.file" class="reference internal" href="#mockfs.storage.file"><tt class="xref docutils literal"><span class="pre">file</span></tt></a></dd></dl>
+<dd><p>alias of <a class="reference internal" href="#mockfs.storage.file" title="mockfs.storage.file"><tt class="xref py py-class docutils literal"><span class="pre">file</span></tt></a></p>
+</dd></dl>
 
 <dl class="function">
 <dt id="mockfs.storage.original_open">
@@ -325,19 +488,6 @@ preferred way to open a file.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-mockfs.data">
-<h1>Internal Data<a class="headerlink" href="#module-mockfs.data" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="mockfs.data.instance">
-<tt class="descclassname">mockfs.data.</tt><tt class="descname">instance</tt><big>(</big><big>)</big><a class="headerlink" href="#mockfs.data.instance" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="mockfs.data.uninstall">
-<tt class="descclassname">mockfs.data.</tt><tt class="descname">uninstall</tt><big>(</big><big>)</big><a class="headerlink" href="#mockfs.data.uninstall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
 
 
           </div>
@@ -345,34 +495,34 @@ preferred way to open a file.</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="index.html">Table Of Contents</a></h3>
-            <ul>
-<li><a class="reference external" href=""><tt class="docutils literal"><span class="pre">os.path</span></tt> and <tt class="docutils literal"><span class="pre">glob</span></tt> Implementations</a></li>
-<li><a class="reference external" href="#module-mockfs.storage">File Storage and IO</a></li>
-<li><a class="reference external" href="#module-mockfs.data">Internal Data</a></li>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><tt class="docutils literal"><span class="pre">os.path</span></tt> and <tt class="docutils literal"><span class="pre">glob</span></tt> Implementations</a></li>
+<li><a class="reference internal" href="#module-mockfs.util">Utility Functions</a></li>
+<li><a class="reference internal" href="#module-mockfs.storage">File Storage and IO</a></li>
 </ul>
 
-            <h4>Previous topic</h4>
-            <p class="topless"><a href="index.html"
-                                  title="previous chapter"><tt class="docutils literal"><span class="pre">mockfs</span></tt> &#8211; A simple mock filesystem for unit tests</a></p>
-            <h3>This Page</h3>
-            <ul class="this-page-menu">
-              <li><a href="sources/api.txt"
-                     rel="nofollow">Show Source</a></li>
-            </ul>
-          <div id="searchbox" style="display: none">
-            <h3>Quick search</h3>
-              <form class="search" action="search.html" method="get">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-              </form>
-              <p class="searchtip" style="font-size: 90%">
-              Enter search terms or a module, class or function name.
-              </p>
-          </div>
-          <script type="text/javascript">$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter"><tt class="docutils literal"><span class="pre">mockfs</span></tt> &#8211; A simple mock filesystem for unit tests</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="sources/api.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -384,17 +534,17 @@ preferred way to open a file.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="modindex.html" title="Global Module Index"
+          <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
           <a href="index.html" title="mockfs – A simple mock filesystem for unit tests"
              >previous</a> |</li>
-        <li><a href="index.html">mockfs v0.5.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">mockfs v0.9.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-      &copy; Copyright 2009, David Aguilar.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+        &copy; Copyright 2009, David Aguilar.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
 </html>

@@ -2,10 +2,15 @@
 
 ``os.path`` and ``glob`` Implementations
 ========================================
-.. automodule:: mockfs.main
+.. automodule:: mockfs.mfs
    :members:
    :undoc-members:
 
+Utility Functions
+=================
+.. automodule:: mockfs.util
+   :members:
+   :undoc-members:
 
 File Storage and IO
 ===================
@@ -13,8 +18,3 @@ File Storage and IO
    :members:
    :undoc-members:
 
-Internal Data
-=============
-.. automodule:: mockfs.data
-   :members:
-   :undoc-members:
