@@ -221,7 +221,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">MockFS</span></span><a class="headerlink" href="#mockfs.mfs.MockFS" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">MockFS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS" title="Link to this definition">#</a></dt>
 <dd><p>MockFS implementation object</p>
 <p>Provides stubs for functions in <a class="reference external" href="https://docs.python.org/3/library/os.html#module-os" title="(in Python v3.12)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/os.path.html#module-os.path" title="(in Python v3.12)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os.path</span></code></a>, and <a class="reference external" href="https://docs.python.org/3/library/glob.html#module-glob" title="(in Python v3.12)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">glob</span></code></a>.</p>
 <dl class="py method">
@@ -363,6 +363,37 @@ is false and onerror is None, an exception is raised.</p>
 <span class="sig-name descname"><span class="pre">SaveFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.StorageBackend.SaveFile" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mockfs.mfs.replace_builtins">
+<span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">replace_builtins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.replace_builtins" title="Link to this definition">#</a></dt>
+<dd><p>Replace builtin functions with mockfs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entries</strong> – Dictionary mapping paths to content</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Newly installed <a class="reference internal" href="#mockfs.mfs.MockFS" title="mockfs.mfs.MockFS"><code class="xref py py-class docutils literal notranslate"><span class="pre">mockfs.mfs.MockFS</span></code></a> instance.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mockfs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fs</span> <span class="o">=</span> <span class="n">mockfs</span><span class="o">.</span><span class="n">replace_builtins</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fs</span><span class="o">.</span><span class="n">add_entries</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;/bin/sh&#39;</span><span class="p">:</span> <span class="s1">&#39;contents&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;/bin/ls&#39;</span><span class="p">:</span> <span class="s1">&#39;contents&#39;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/bin&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;ls&#39;</span><span class="p">,</span> <span class="s1">&#39;sh&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mockfs</span><span class="o">.</span><span class="n">restore_builtins</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mockfs.mfs.restore_builtins">
+<span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">restore_builtins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.restore_builtins" title="Link to this definition">#</a></dt>
+<dd><p>Restore the original builtin functions.</p>
 </dd></dl>
 
 </section>
@@ -732,6 +763,8 @@ the xreadlines module.</p>
 <li><a class="reference internal" href="#mockfs.mfs.StorageBackend.SaveFile"><code class="docutils literal notranslate"><span class="pre">StorageBackend.SaveFile()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#mockfs.mfs.replace_builtins"><code class="docutils literal notranslate"><span class="pre">replace_builtins()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.mfs.restore_builtins"><code class="docutils literal notranslate"><span class="pre">restore_builtins()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-mockfs.util">Utility Functions</a><ul>

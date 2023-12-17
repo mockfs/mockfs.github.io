@@ -212,7 +212,23 @@ replacing functions from the <a class="reference external" href="https://docs.py
 
 <span class="kn">import</span> <span class="nn">mockfs</span>
 
+
+<span class="k">def</span> <span class="nf">test_context_manager</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The MockFS class can be used as context manager&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">mockfs</span><span class="o">.</span><span class="n">MockFS</span><span class="p">(</span><span class="n">entries</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;/tmp/does/not/exist&#39;</span><span class="p">:</span> <span class="s1">&#39;mockfs&#39;</span><span class="p">})</span> <span class="k">as</span> <span class="n">mfs</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;/tmp/does/not/exist&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/tmp/does/not/exist&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">content</span> <span class="o">==</span> <span class="s1">&#39;mockfs&#39;</span>
+        <span class="n">mfs</span><span class="o">.</span><span class="n">add_entries</span><span class="p">({</span><span class="s1">&#39;/tmp/does/not/exist-2&#39;</span><span class="p">:</span> <span class="s1">&#39;mockfs&#39;</span><span class="p">})</span>
+        <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;/tmp/does/not/exist-2&#39;</span><span class="p">)</span>
+    <span class="c1"># Context manager scope ends: everything is back to normal now.</span>
+    <span class="k">assert</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;/tmp/does/not/exist&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;/tmp/does/not/exist-2&#39;</span><span class="p">)</span>
+
+
 <span class="k">class</span> <span class="nc">ExampleTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The mockfs module can be used in setUp() and tearDown()&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mfs</span> <span class="o">=</span> <span class="n">mockfs</span><span class="o">.</span><span class="n">replace_builtins</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mfs</span><span class="o">.</span><span class="n">add_entries</span><span class="p">({</span><span class="s1">&#39;/usr/bin/mockfs-magic&#39;</span><span class="p">:</span> <span class="s1">&#39;magic&#39;</span><span class="p">})</span>
@@ -288,6 +304,8 @@ replacing functions from the <a class="reference external" href="https://docs.py
 <li class="toctree-l3"><a class="reference internal" href="api.html#mockfs.mfs.StorageBackend.SaveFile"><code class="docutils literal notranslate"><span class="pre">StorageBackend.SaveFile()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#mockfs.mfs.replace_builtins"><code class="docutils literal notranslate"><span class="pre">replace_builtins()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#mockfs.mfs.restore_builtins"><code class="docutils literal notranslate"><span class="pre">restore_builtins()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html#module-mockfs.util">Utility Functions</a><ul>
@@ -354,40 +372,9 @@ replacing functions from the <a class="reference external" href="https://docs.py
 </li>
 </ul>
 </div>
-<dl class="py function" id="module-mockfs">
-<dt class="sig sig-object py" id="mockfs.replace_builtins">
-<span class="sig-prename descclassname"><span class="pre">mockfs.</span></span><span class="sig-name descname"><span class="pre">replace_builtins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.replace_builtins" title="Link to this definition">#</a></dt>
-<dd><p>Replace builtin functions with mockfs.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>entries</strong> – Dictionary mapping paths to content</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Newly installed <a class="reference internal" href="api.html#mockfs.mfs.MockFS" title="mockfs.mfs.MockFS"><code class="xref py py-class docutils literal notranslate"><span class="pre">mockfs.mfs.MockFS</span></code></a> instance.</p>
-</dd>
-</dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mockfs</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fs</span> <span class="o">=</span> <span class="n">mockfs</span><span class="o">.</span><span class="n">replace_builtins</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fs</span><span class="o">.</span><span class="n">add_entries</span><span class="p">({</span>
-<span class="gp">... </span>        <span class="s1">&#39;/bin/sh&#39;</span><span class="p">:</span> <span class="s1">&#39;contents&#39;</span><span class="p">,</span>
-<span class="gp">... </span>        <span class="s1">&#39;/bin/ls&#39;</span><span class="p">:</span> <span class="s1">&#39;contents&#39;</span><span class="p">,</span>
-<span class="gp">... </span><span class="p">})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/bin&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;ls&#39;</span><span class="p">,</span> <span class="s1">&#39;sh&#39;</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mockfs</span><span class="o">.</span><span class="n">restore_builtins</span><span class="p">()</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="mockfs.restore_builtins">
-<span class="sig-prename descclassname"><span class="pre">mockfs.</span></span><span class="sig-name descname"><span class="pre">restore_builtins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.restore_builtins" title="Link to this definition">#</a></dt>
-<dd><p>Restore the original builtin functions.</p>
-</dd></dl>
-
 </section>
 <section id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">#</a></h2>
+<span id="module-mockfs"></span><h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
@@ -443,11 +430,7 @@ replacing functions from the <a class="reference external" href="https://docs.py
             <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mockfs</span></code> – A simple mock filesystem for unit tests</a><ul>
 <li><a class="reference internal" href="#example-unit-test">Example Unit Test</a></li>
-<li><a class="reference internal" href="#developer-documentation">Developer Documentation</a><ul>
-<li><a class="reference internal" href="#mockfs.replace_builtins"><code class="docutils literal notranslate"><span class="pre">replace_builtins()</span></code></a></li>
-<li><a class="reference internal" href="#mockfs.restore_builtins"><code class="docutils literal notranslate"><span class="pre">restore_builtins()</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#developer-documentation">Developer Documentation</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 </li>
