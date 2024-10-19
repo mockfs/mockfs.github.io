@@ -5,11 +5,11 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="History" href="history.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
         <title>os.path and glob Implementations - mockfs documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
     
     
 
@@ -68,7 +68,7 @@
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -83,22 +83,63 @@
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
 </svg>
@@ -111,6 +152,8 @@
 <label class="overlay toc-overlay" for="__toc">
   <div class="visually-hidden">Hide table of contents sidebar</div>
 </label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
 
 
@@ -129,7 +172,8 @@
       <div class="theme-toggle-container theme-toggle-header">
         <button class="theme-toggle">
           <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
@@ -181,11 +225,17 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/api.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
 <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
@@ -195,89 +245,89 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <article role="main">
+        <article role="main" id="furo-main-content">
           <section id="module-mockfs.mfs">
-<span id="os-path-and-glob-implementations"></span><span id="mockfs-api"></span><h1><code class="docutils literal notranslate"><span class="pre">os.path</span></code> and <code class="docutils literal notranslate"><span class="pre">glob</span></code> Implementations<a class="headerlink" href="#module-mockfs.mfs" title="Link to this heading">#</a></h1>
+<span id="os-path-and-glob-implementations"></span><span id="mockfs-api"></span><h1><code class="docutils literal notranslate"><span class="pre">os.path</span></code> and <code class="docutils literal notranslate"><span class="pre">glob</span></code> Implementations<a class="headerlink" href="#module-mockfs.mfs" title="Link to this heading">¶</a></h1>
 <p>mockfs: A simple mock filesystem for unit tests.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="mockfs.mfs.Cwd">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">Cwd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mfs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.Cwd" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">Cwd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mfs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.Cwd" title="Link to this definition">¶</a></dt>
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.Cwd.chdir">
-<span class="sig-name descname"><span class="pre">chdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.Cwd.chdir" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">chdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.Cwd.chdir" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.Cwd.getcwd">
-<span class="sig-name descname"><span class="pre">getcwd</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.Cwd.getcwd" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">getcwd</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.Cwd.getcwd" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.Cwd.getcwdu">
-<span class="sig-name descname"><span class="pre">getcwdu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.Cwd.getcwdu" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">getcwdu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.Cwd.getcwdu" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">MockFS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">MockFS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS" title="Link to this definition">¶</a></dt>
 <dd><p>MockFS implementation object</p>
-<p>Provides stubs for functions in <a class="reference external" href="https://docs.python.org/3/library/os.html#module-os" title="(in Python v3.12)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/os.path.html#module-os.path" title="(in Python v3.12)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os.path</span></code></a>, and <a class="reference external" href="https://docs.python.org/3/library/glob.html#module-glob" title="(in Python v3.12)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">glob</span></code></a>.</p>
+<p>Provides stubs for functions in <a class="reference external" href="https://docs.python.org/3/library/os.html#module-os" title="(in Python v3.13)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/os.path.html#module-os.path" title="(in Python v3.13)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os.path</span></code></a>, and <a class="reference external" href="https://docs.python.org/3/library/glob.html#module-glob" title="(in Python v3.13)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">glob</span></code></a>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.abspath">
-<span class="sig-name descname"><span class="pre">abspath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.abspath" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">abspath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.abspath" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.add_entries">
-<span class="sig-name descname"><span class="pre">add_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.add_entries" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">add_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.add_entries" title="Link to this definition">¶</a></dt>
 <dd><p>Add new entries to mockfs.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.copytree">
-<span class="sig-name descname"><span class="pre">copytree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.copytree" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">copytree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.copytree" title="Link to this definition">¶</a></dt>
 <dd><p>Copy a directory subtree</p>
-<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/shutil.html#shutil.copytree" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">shutil.copytree()</span></code></a> interface.</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/shutil.html#shutil.copytree" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">shutil.copytree()</span></code></a> interface.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.exists">
-<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.exists" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.exists" title="Link to this definition">¶</a></dt>
 <dd><p>Return True if path exists</p>
-<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.exists" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.exists()</span></code></a> interface.</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.exists" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.exists()</span></code></a> interface.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.getsize">
-<span class="sig-name descname"><span class="pre">getsize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.getsize" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">getsize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.getsize" title="Link to this definition">¶</a></dt>
 <dd><p>Return the size of a file, reported by os.stat().</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.glob">
-<span class="sig-name descname"><span class="pre">glob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.glob" title="Link to this definition">#</a></dt>
-<dd><p>Implementation of <a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.glob" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">glob.glob()</span></code></a></p>
+<span class="sig-name descname"><span class="pre">glob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.glob" title="Link to this definition">¶</a></dt>
+<dd><p>Implementation of <a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.glob" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">glob.glob()</span></code></a></p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.isdir">
-<span class="sig-name descname"><span class="pre">isdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.isdir" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">isdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.isdir" title="Link to this definition">¶</a></dt>
 <dd><p>Return True if path is a directory</p>
-<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.isdir" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isdir()</span></code></a> interface.</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.isdir" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isdir()</span></code></a> interface.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.isfile">
-<span class="sig-name descname"><span class="pre">isfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.isfile" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">isfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.isfile" title="Link to this definition">¶</a></dt>
 <dd><p>Return True if path is a file</p>
-<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.isfile" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isfile()</span></code></a> interface.</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.isfile" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isfile()</span></code></a> interface.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.islink">
-<span class="sig-name descname"><span class="pre">islink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.islink" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">islink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.islink" title="Link to this definition">¶</a></dt>
 <dd><p>Return True if path is a symlink</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -287,41 +337,41 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.listdir">
-<span class="sig-name descname"><span class="pre">listdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.listdir" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">listdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.listdir" title="Link to this definition">¶</a></dt>
 <dd><p>Return the directory contents of ‘path’</p>
-<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.listdir" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.listdir()</span></code></a> interface.
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.listdir" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.listdir()</span></code></a> interface.
 :param path: filesystem path</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.makedirs">
-<span class="sig-name descname"><span class="pre">makedirs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.makedirs" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">makedirs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.makedirs" title="Link to this definition">¶</a></dt>
 <dd><p>Create directory entries for a path</p>
 <p>Raise OSError if the path already exists.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.read" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.read" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.remove">
-<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.remove" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.remove" title="Link to this definition">¶</a></dt>
 <dd><p>Remove the entry for a file path</p>
-<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.remove" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.remove()</span></code></a> interface.</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.remove" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.remove()</span></code></a> interface.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.rmdir">
-<span class="sig-name descname"><span class="pre">rmdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fspath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.rmdir" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">rmdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fspath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.rmdir" title="Link to this definition">¶</a></dt>
 <dd><p>Remove the entry for a directory path</p>
-<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.rmdir" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.rmdir()</span></code></a> interface.</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.rmdir" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.rmdir()</span></code></a> interface.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.rmtree">
-<span class="sig-name descname"><span class="pre">rmtree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onerror</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.rmtree" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">rmtree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onerror</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.rmtree" title="Link to this definition">¶</a></dt>
 <dd><p>Recursively delete a directory tree.</p>
 <p>If ignore_errors is set, errors are ignored; otherwise, if onerror
 is set, it is called to handle the error with arguments (func,
@@ -333,41 +383,41 @@ is false and onerror is None, an exception is raised.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.MockFS.walk">
-<span class="sig-name descname"><span class="pre">walk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.walk" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">walk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.MockFS.walk" title="Link to this definition">¶</a></dt>
 <dd><p>Walk a filesystem path</p>
-<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.walk" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.walk()</span></code></a> interface.</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.walk" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.walk()</span></code></a> interface.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="mockfs.mfs.StorageBackend">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">StorageBackend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mfs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.StorageBackend" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">StorageBackend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mfs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.StorageBackend" title="Link to this definition">¶</a></dt>
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.StorageBackend.CheckForFile">
-<span class="sig-name descname"><span class="pre">CheckForFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.StorageBackend.CheckForFile" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">CheckForFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.StorageBackend.CheckForFile" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.StorageBackend.DeleteFile">
-<span class="sig-name descname"><span class="pre">DeleteFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.StorageBackend.DeleteFile" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">DeleteFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.StorageBackend.DeleteFile" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.StorageBackend.LoadFile">
-<span class="sig-name descname"><span class="pre">LoadFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.StorageBackend.LoadFile" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">LoadFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.StorageBackend.LoadFile" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.mfs.StorageBackend.SaveFile">
-<span class="sig-name descname"><span class="pre">SaveFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.StorageBackend.SaveFile" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">SaveFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.StorageBackend.SaveFile" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mockfs.mfs.replace_builtins">
-<span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">replace_builtins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.replace_builtins" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">replace_builtins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.replace_builtins" title="Link to this definition">¶</a></dt>
 <dd><p>Replace builtin functions with mockfs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -392,20 +442,20 @@ is false and onerror is None, an exception is raised.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mockfs.mfs.restore_builtins">
-<span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">restore_builtins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.restore_builtins" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">mockfs.mfs.</span></span><span class="sig-name descname"><span class="pre">restore_builtins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.mfs.restore_builtins" title="Link to this definition">¶</a></dt>
 <dd><p>Restore the original builtin functions.</p>
 </dd></dl>
 
 </section>
 <section id="module-mockfs.util">
-<span id="utility-functions"></span><h1>Utility Functions<a class="headerlink" href="#module-mockfs.util" title="Link to this heading">#</a></h1>
+<span id="utility-functions"></span><h1>Utility Functions<a class="headerlink" href="#module-mockfs.util" title="Link to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="mockfs.util.build_nested_dict">
-<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">build_nested_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.build_nested_dict" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">build_nested_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.build_nested_dict" title="Link to this definition">¶</a></dt>
 <dd><p>Convert a flat dict of paths to a nested dict</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>entries</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a>) – Path to entry dictionary</p>
+<dd class="field-odd"><p><strong>entries</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – Path to entry dictionary</p>
 </dd>
 </dl>
 <p>e.g. <cite>{‘/unix/path’: ‘content’, ‘/unix/dir’: {},}</cite></p>
@@ -413,35 +463,35 @@ is false and onerror is None, an exception is raised.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mockfs.util.build_nested_dir_dict">
-<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">build_nested_dir_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dirpath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.build_nested_dir_dict" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">build_nested_dir_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dirpath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.build_nested_dir_dict" title="Link to this definition">¶</a></dt>
 <dd><p>Build a nested dict of dicts from a directory path</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>dirpath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Directory path</p>
+<dd class="field-odd"><p><strong>dirpath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Directory path</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mockfs.util.is_dir">
-<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">is_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.is_dir" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">is_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.is_dir" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mockfs.util.is_file">
-<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">is_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.is_file" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">is_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.is_file" title="Link to this definition">¶</a></dt>
 <dd><p>Is value a file?  Equivalent to checking for strings</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mockfs.util.is_string">
-<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">is_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.is_string" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">is_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.is_string" title="Link to this definition">¶</a></dt>
 <dd><p>Is value a string?</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mockfs.util.merge_dicts">
-<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">merge_dicts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.merge_dicts" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">merge_dicts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.merge_dicts" title="Link to this definition">¶</a></dt>
 <dd><p>Merge entries from ‘src’ into ‘dst’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -455,7 +505,7 @@ is false and onerror is None, an exception is raised.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mockfs.util.sanitize">
-<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">sanitize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.sanitize" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">mockfs.util.</span></span><span class="sig-name descname"><span class="pre">sanitize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.util.sanitize" title="Link to this definition">¶</a></dt>
 <dd><p>Clean up path arguments for use with MockFS</p>
 <p>MockFS isn’t happy with trailing slashes since it uses a dict
 to simulate the file system.</p>
@@ -463,36 +513,36 @@ to simulate the file system.</p>
 
 </section>
 <section id="module-mockfs.storage">
-<span id="file-storage-and-io"></span><h1>File Storage and IO<a class="headerlink" href="#module-mockfs.storage" title="Link to this heading">#</a></h1>
+<span id="file-storage-and-io"></span><h1>File Storage and IO<a class="headerlink" href="#module-mockfs.storage" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="mockfs.storage.backend">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mockfs.storage.</span></span><span class="sig-name descname"><span class="pre">backend</span></span><a class="headerlink" href="#mockfs.storage.backend" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mockfs.storage.</span></span><span class="sig-name descname"><span class="pre">backend</span></span><a class="headerlink" href="#mockfs.storage.backend" title="Link to this definition">¶</a></dt>
 <dd><p>Example backend.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.backend.CheckForFile">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CheckForFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.backend.CheckForFile" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CheckForFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.backend.CheckForFile" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.backend.DeleteFile">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.backend.DeleteFile" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.backend.DeleteFile" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.backend.LoadFile">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LoadFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.backend.LoadFile" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LoadFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.backend.LoadFile" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.backend.SaveFile">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SaveFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.backend.SaveFile" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SaveFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.backend.SaveFile" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="mockfs.storage.file">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mockfs.storage.</span></span><span class="sig-name descname"><span class="pre">file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mockfs.storage.</span></span><span class="sig-name descname"><span class="pre">file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file" title="Link to this definition">¶</a></dt>
 <dd><p>Open a file. The mode can be ‘r’, ‘w’ or ‘a’ for reading (default), writing
 or appending. The file will be created if it doesn’t exist when opened for
 writing or appending; it will be truncated when opened for writing. Add a
@@ -501,7 +551,7 @@ simultaneous reading and writing. The preferred way to open a file is with
 the builtin open() function.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.close">
-<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.close" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.close" title="Link to this definition">¶</a></dt>
 <dd><p>Returns None or (perhaps) an integer.  Close the file.</p>
 <p>Sets data attribute .closed to True.  A closed file cannot be used for
 further I/O operations.  close() may be called more than once without
@@ -511,68 +561,68 @@ may return an exit status upon closing.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mockfs.storage.file.closed">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">closed</span></span><a class="headerlink" href="#mockfs.storage.file.closed" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">closed</span></span><a class="headerlink" href="#mockfs.storage.file.closed" title="Link to this definition">¶</a></dt>
 <dd><p>True if the file is closed</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mockfs.storage.file.encoding">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encoding</span></span><a class="headerlink" href="#mockfs.storage.file.encoding" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encoding</span></span><a class="headerlink" href="#mockfs.storage.file.encoding" title="Link to this definition">¶</a></dt>
 <dd><p>file encoding</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mockfs.storage.file.errors">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">errors</span></span><a class="headerlink" href="#mockfs.storage.file.errors" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">errors</span></span><a class="headerlink" href="#mockfs.storage.file.errors" title="Link to this definition">¶</a></dt>
 <dd><p>Unicode error handler</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.fileno">
-<span class="sig-name descname"><span class="pre">fileno</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.fileno" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">fileno</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.fileno" title="Link to this definition">¶</a></dt>
 <dd><p>file descriptor</p>
 <p>This is needed for lower-level file interfaces, such os.read().</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.flush">
-<span class="sig-name descname"><span class="pre">flush</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.flush" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">flush</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.flush" title="Link to this definition">¶</a></dt>
 <dd><p>Flush the internal I/O buffer.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.isatty">
-<span class="sig-name descname"><span class="pre">isatty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.isatty" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">isatty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.isatty" title="Link to this definition">¶</a></dt>
 <dd><p>Is the file connected to a tty device? mockfs always returns False.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mockfs.storage.file.mode">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#mockfs.storage.file.mode" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#mockfs.storage.file.mode" title="Link to this definition">¶</a></dt>
 <dd><p>file mode, one of r(+)(b), w(+)(b) or a(+)(b)</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mockfs.storage.file.name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#mockfs.storage.file.name" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#mockfs.storage.file.name" title="Link to this definition">¶</a></dt>
 <dd><p>file name</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mockfs.storage.file.newlines">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">newlines</span></span><a class="headerlink" href="#mockfs.storage.file.newlines" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">newlines</span></span><a class="headerlink" href="#mockfs.storage.file.newlines" title="Link to this definition">¶</a></dt>
 <dd><p>end-of-line convention used in this file</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.next">
-<span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.next" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.next" title="Link to this definition">¶</a></dt>
 <dd><p>Return the next value, or raise StopIteration.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DEFAULT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.read" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DEFAULT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.read" title="Link to this definition">¶</a></dt>
 <dd><p>Read at most size bytes, returned as a string.</p>
 <p>If the size argument is negative or omitted, read until EOF is reached.
 Notice that when in non-blocking mode, less data than what was
@@ -581,7 +631,7 @@ requested may be returned, even if no size parameter was given.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.readline">
-<span class="sig-name descname"><span class="pre">readline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DEFAULT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.readline" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">readline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DEFAULT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.readline" title="Link to this definition">¶</a></dt>
 <dd><p>Return the next line from the file, as a string.</p>
 <p>Retain newline. A non-negative size argument limits the maximum number
 of bytes to return (an incomplete line may be returned then). Return
@@ -590,7 +640,7 @@ an empty string at EOF.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.readlines">
-<span class="sig-name descname"><span class="pre">readlines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DEFAULT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.readlines" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">readlines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DEFAULT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.readlines" title="Link to this definition">¶</a></dt>
 <dd><p>Return a list of strings, each a line from the file.</p>
 <p>Call readline() repeatedly and return a list of the lines so read. The
 optional size argument, if given, is an approximate bound on the total
@@ -599,7 +649,7 @@ number of bytes in the lines returned.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.seek">
-<span class="sig-name descname"><span class="pre">seek</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.seek" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">seek</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.seek" title="Link to this definition">¶</a></dt>
 <dd><p>Move to new file position.</p>
 <p>Argument offset is a byte count.  Optional argument whence defaults to
 0 (offset from start of file, offset should be &gt;= 0); other values are 1
@@ -613,26 +663,26 @@ Note that not all file objects are seekable.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="mockfs.storage.file.softspace">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">softspace</span></span><a class="headerlink" href="#mockfs.storage.file.softspace" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">softspace</span></span><a class="headerlink" href="#mockfs.storage.file.softspace" title="Link to this definition">¶</a></dt>
 <dd><p>flag indicating that a space needs to be printed; used by print</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.tell">
-<span class="sig-name descname"><span class="pre">tell</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.tell" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">tell</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.tell" title="Link to this definition">¶</a></dt>
 <dd><p>Return the current file position, an integer (may be a long integer).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.truncate">
-<span class="sig-name descname"><span class="pre">truncate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DEFAULT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.truncate" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">truncate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DEFAULT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.truncate" title="Link to this definition">¶</a></dt>
 <dd><p>Truncate the file to at most size bytes.</p>
 <p>Size defaults to the current file position, as returned by tell().</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.write" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.write" title="Link to this definition">¶</a></dt>
 <dd><p>Write data to the file.</p>
 <p>Note that due to buffering, flush() or close() may be needed before
 the file on disk reflects the data written.</p>
@@ -640,7 +690,7 @@ the file on disk reflects the data written.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.writelines">
-<span class="sig-name descname"><span class="pre">writelines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.writelines" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">writelines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.writelines" title="Link to this definition">¶</a></dt>
 <dd><p>Write the strings to the file.</p>
 <p>Note that newlines are not added.  The sequence can be any iterable
 object producing strings. This is equivalent to calling write() for
@@ -649,7 +699,7 @@ each string.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="mockfs.storage.file.xreadlines">
-<span class="sig-name descname"><span class="pre">xreadlines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.xreadlines" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">xreadlines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.file.xreadlines" title="Link to this definition">¶</a></dt>
 <dd><p>Returns self for backward compatibility.</p>
 <p>File objects now include the performance optimizations previously implemented in
 the xreadlines module.</p>
@@ -659,25 +709,25 @@ the xreadlines module.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mockfs.storage.get_new_fileno">
-<span class="sig-prename descclassname"><span class="pre">mockfs.storage.</span></span><span class="sig-name descname"><span class="pre">get_new_fileno</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.get_new_fileno" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">mockfs.storage.</span></span><span class="sig-name descname"><span class="pre">get_new_fileno</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.get_new_fileno" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mockfs.storage.open">
-<span class="sig-prename descclassname"><span class="pre">mockfs.storage.</span></span><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.open" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">mockfs.storage.</span></span><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.open" title="Link to this definition">¶</a></dt>
 <dd><p>Open a file using the file() type, returns a file object.</p>
 <p>This is the preferred way to open a file.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mockfs.storage.replace_builtins">
-<span class="sig-prename descclassname"><span class="pre">mockfs.storage.</span></span><span class="sig-name descname"><span class="pre">replace_builtins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.replace_builtins" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">mockfs.storage.</span></span><span class="sig-name descname"><span class="pre">replace_builtins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.replace_builtins" title="Link to this definition">¶</a></dt>
 <dd><p>replace file and open in the builtin module</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="mockfs.storage.restore_builtins">
-<span class="sig-prename descclassname"><span class="pre">mockfs.storage.</span></span><span class="sig-name descname"><span class="pre">restore_builtins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.restore_builtins" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">mockfs.storage.</span></span><span class="sig-name descname"><span class="pre">restore_builtins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.storage.restore_builtins" title="Link to this definition">¶</a></dt>
 <dd><p>restore the original file and open to the builtin module</p>
 </dd></dl>
 
@@ -825,8 +875,8 @@ the xreadlines module.</p>
     </aside>
   </div>
 </div><script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
     </body>
 </html>

@@ -5,11 +5,11 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="History" href="history.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
         <title>mockfs documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
     
     
 
@@ -68,7 +68,7 @@
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -83,22 +83,63 @@
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
 </svg>
@@ -111,6 +152,8 @@
 <label class="overlay toc-overlay" for="__toc">
   <div class="visually-hidden">Hide table of contents sidebar</div>
 </label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
 
 
@@ -129,7 +172,8 @@
       <div class="theme-toggle-container theme-toggle-header">
         <button class="theme-toggle">
           <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
@@ -181,11 +225,17 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/index.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
 <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
@@ -195,18 +245,18 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <article role="main">
+        <article role="main" id="furo-main-content">
           <section id="mockfs-a-simple-mock-filesystem-for-unit-tests">
-<h1><a class="reference internal" href="#module-mockfs" title="mockfs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mockfs</span></code></a> – A simple mock filesystem for unit tests<a class="headerlink" href="#mockfs-a-simple-mock-filesystem-for-unit-tests" title="Link to this heading">#</a></h1>
+<h1><a class="reference internal" href="#module-mockfs" title="mockfs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mockfs</span></code></a> – A simple mock filesystem for unit tests<a class="headerlink" href="#mockfs-a-simple-mock-filesystem-for-unit-tests" title="Link to this heading">¶</a></h1>
 <p><cite>mockfs</cite> makes it possible to test filesystem-dependent code by
-replacing functions from the <a class="reference external" href="https://docs.python.org/3/library/os.html#module-os" title="(in Python v3.12)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a> and <a class="reference external" href="https://docs.python.org/3/library/glob.html#module-glob" title="(in Python v3.12)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">glob</span></code></a> modules.</p>
+replacing functions from the <a class="reference external" href="https://docs.python.org/3/library/os.html#module-os" title="(in Python v3.13)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a> and <a class="reference external" href="https://docs.python.org/3/library/glob.html#module-glob" title="(in Python v3.13)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">glob</span></code></a> modules.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
 </ul>
 </div>
 <section id="example-unit-test">
-<h2>Example Unit Test<a class="headerlink" href="#example-unit-test" title="Link to this heading">#</a></h2>
+<h2>Example Unit Test<a class="headerlink" href="#example-unit-test" title="Link to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
 
@@ -248,27 +298,27 @@ replacing functions from the <a class="reference external" href="https://docs.py
 </div>
 <p>Currently supported functions:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#open" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.glob" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">glob.glob()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.chdir" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.chdir()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.getcwd" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.getcwd()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.listdir" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.listdir()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.makedirs" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.makedirs()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.abspath" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.abspath()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.exists" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.exists()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.getsize" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.getsize()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.islink" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.islink()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.isdir" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isdir()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.isfile" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isfile()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.remove" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.remove()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.rmdir" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.rmdir()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.unlink" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.unlink()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.walk" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.walk()</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/shutil.html#shutil.rmtree" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">shutil.rmtree()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#open" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.glob" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">glob.glob()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.chdir" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.chdir()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.getcwd" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.getcwd()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.listdir" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.listdir()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.makedirs" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.makedirs()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.abspath" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.abspath()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.exists" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.exists()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.getsize" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.getsize()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.islink" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.islink()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.isdir" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isdir()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.isfile" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isfile()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.remove" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.remove()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.rmdir" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.rmdir()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.unlink" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.unlink()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/os.html#os.walk" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.walk()</span></code></a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/shutil.html#shutil.rmtree" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">shutil.rmtree()</span></code></a></p></li>
 </ul>
 </section>
 <section id="developer-documentation">
-<h2>Developer Documentation<a class="headerlink" href="#developer-documentation" title="Link to this heading">#</a></h2>
+<h2>Developer Documentation<a class="headerlink" href="#developer-documentation" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api.html"><code class="docutils literal notranslate"><span class="pre">os.path</span></code> and <code class="docutils literal notranslate"><span class="pre">glob</span></code> Implementations</a><ul>
@@ -372,9 +422,162 @@ replacing functions from the <a class="reference external" href="https://docs.py
 </li>
 </ul>
 </div>
+<dl class="py class" id="module-mockfs">
+<dt class="sig sig-object py" id="mockfs.MockFS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mockfs.</span></span><span class="sig-name descname"><span class="pre">MockFS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>MockFS implementation object</p>
+<p>Provides stubs for functions in <a class="reference external" href="https://docs.python.org/3/library/os.html#module-os" title="(in Python v3.13)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/os.path.html#module-os.path" title="(in Python v3.13)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">os.path</span></code></a>, and <a class="reference external" href="https://docs.python.org/3/library/glob.html#module-glob" title="(in Python v3.13)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">glob</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.abspath">
+<span class="sig-name descname"><span class="pre">abspath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.abspath" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.add_entries">
+<span class="sig-name descname"><span class="pre">add_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.add_entries" title="Link to this definition">¶</a></dt>
+<dd><p>Add new entries to mockfs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.copytree">
+<span class="sig-name descname"><span class="pre">copytree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.copytree" title="Link to this definition">¶</a></dt>
+<dd><p>Copy a directory subtree</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/shutil.html#shutil.copytree" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">shutil.copytree()</span></code></a> interface.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.exists" title="Link to this definition">¶</a></dt>
+<dd><p>Return True if path exists</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.exists" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.exists()</span></code></a> interface.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.getsize">
+<span class="sig-name descname"><span class="pre">getsize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.getsize" title="Link to this definition">¶</a></dt>
+<dd><p>Return the size of a file, reported by os.stat().</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.glob">
+<span class="sig-name descname"><span class="pre">glob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.glob" title="Link to this definition">¶</a></dt>
+<dd><p>Implementation of <a class="reference external" href="https://docs.python.org/3/library/glob.html#glob.glob" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">glob.glob()</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.isdir">
+<span class="sig-name descname"><span class="pre">isdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.isdir" title="Link to this definition">¶</a></dt>
+<dd><p>Return True if path is a directory</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.isdir" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isdir()</span></code></a> interface.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.isfile">
+<span class="sig-name descname"><span class="pre">isfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.isfile" title="Link to this definition">¶</a></dt>
+<dd><p>Return True if path is a file</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.path.html#os.path.isfile" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.isfile()</span></code></a> interface.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.islink">
+<span class="sig-name descname"><span class="pre">islink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.islink" title="Link to this definition">¶</a></dt>
+<dd><p>Return True if path is a symlink</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently hard-wired to return False</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.listdir">
+<span class="sig-name descname"><span class="pre">listdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.listdir" title="Link to this definition">¶</a></dt>
+<dd><p>Return the directory contents of ‘path’</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.listdir" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.listdir()</span></code></a> interface.
+:param path: filesystem path</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.makedirs">
+<span class="sig-name descname"><span class="pre">makedirs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.makedirs" title="Link to this definition">¶</a></dt>
+<dd><p>Create directory entries for a path</p>
+<p>Raise OSError if the path already exists.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.read" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.remove" title="Link to this definition">¶</a></dt>
+<dd><p>Remove the entry for a file path</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.remove" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.remove()</span></code></a> interface.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.rmdir">
+<span class="sig-name descname"><span class="pre">rmdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fspath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.rmdir" title="Link to this definition">¶</a></dt>
+<dd><p>Remove the entry for a directory path</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.rmdir" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.rmdir()</span></code></a> interface.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.rmtree">
+<span class="sig-name descname"><span class="pre">rmtree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onerror</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.rmtree" title="Link to this definition">¶</a></dt>
+<dd><p>Recursively delete a directory tree.</p>
+<p>If ignore_errors is set, errors are ignored; otherwise, if onerror
+is set, it is called to handle the error with arguments (func,
+path, exc_info) where func is os.listdir, os.remove, or os.rmdir;
+path is the argument to that function that caused it to fail; and
+exc_info is a tuple returned by sys.exc_info().  If ignore_errors
+is false and onerror is None, an exception is raised.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mockfs.MockFS.walk">
+<span class="sig-name descname"><span class="pre">walk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.MockFS.walk" title="Link to this definition">¶</a></dt>
+<dd><p>Walk a filesystem path</p>
+<p>Implements the <a class="reference external" href="https://docs.python.org/3/library/os.html#os.walk" title="(in Python v3.13)"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.walk()</span></code></a> interface.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mockfs.replace_builtins">
+<span class="sig-prename descclassname"><span class="pre">mockfs.</span></span><span class="sig-name descname"><span class="pre">replace_builtins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.replace_builtins" title="Link to this definition">¶</a></dt>
+<dd><p>Replace builtin functions with mockfs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entries</strong> – Dictionary mapping paths to content</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Newly installed <a class="reference internal" href="api.html#mockfs.mfs.MockFS" title="mockfs.mfs.MockFS"><code class="xref py py-class docutils literal notranslate"><span class="pre">mockfs.mfs.MockFS</span></code></a> instance.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mockfs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fs</span> <span class="o">=</span> <span class="n">mockfs</span><span class="o">.</span><span class="n">replace_builtins</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fs</span><span class="o">.</span><span class="n">add_entries</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;/bin/sh&#39;</span><span class="p">:</span> <span class="s1">&#39;contents&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;/bin/ls&#39;</span><span class="p">:</span> <span class="s1">&#39;contents&#39;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;/bin&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;ls&#39;</span><span class="p">,</span> <span class="s1">&#39;sh&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mockfs</span><span class="o">.</span><span class="n">restore_builtins</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mockfs.restore_builtins">
+<span class="sig-prename descclassname"><span class="pre">mockfs.</span></span><span class="sig-name descname"><span class="pre">restore_builtins</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mockfs.restore_builtins" title="Link to this definition">¶</a></dt>
+<dd><p>Restore the original builtin functions.</p>
+</dd></dl>
+
 </section>
 <section id="indices-and-tables">
-<span id="module-mockfs"></span><h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">#</a></h2>
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
@@ -430,7 +633,30 @@ replacing functions from the <a class="reference external" href="https://docs.py
             <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mockfs</span></code> – A simple mock filesystem for unit tests</a><ul>
 <li><a class="reference internal" href="#example-unit-test">Example Unit Test</a></li>
-<li><a class="reference internal" href="#developer-documentation">Developer Documentation</a></li>
+<li><a class="reference internal" href="#developer-documentation">Developer Documentation</a><ul>
+<li><a class="reference internal" href="#mockfs.MockFS"><code class="docutils literal notranslate"><span class="pre">MockFS</span></code></a><ul>
+<li><a class="reference internal" href="#mockfs.MockFS.abspath"><code class="docutils literal notranslate"><span class="pre">MockFS.abspath()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.add_entries"><code class="docutils literal notranslate"><span class="pre">MockFS.add_entries()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.copytree"><code class="docutils literal notranslate"><span class="pre">MockFS.copytree()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.exists"><code class="docutils literal notranslate"><span class="pre">MockFS.exists()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.getsize"><code class="docutils literal notranslate"><span class="pre">MockFS.getsize()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.glob"><code class="docutils literal notranslate"><span class="pre">MockFS.glob()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.isdir"><code class="docutils literal notranslate"><span class="pre">MockFS.isdir()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.isfile"><code class="docutils literal notranslate"><span class="pre">MockFS.isfile()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.islink"><code class="docutils literal notranslate"><span class="pre">MockFS.islink()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.listdir"><code class="docutils literal notranslate"><span class="pre">MockFS.listdir()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.makedirs"><code class="docutils literal notranslate"><span class="pre">MockFS.makedirs()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.read"><code class="docutils literal notranslate"><span class="pre">MockFS.read()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.remove"><code class="docutils literal notranslate"><span class="pre">MockFS.remove()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.rmdir"><code class="docutils literal notranslate"><span class="pre">MockFS.rmdir()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.rmtree"><code class="docutils literal notranslate"><span class="pre">MockFS.rmtree()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.MockFS.walk"><code class="docutils literal notranslate"><span class="pre">MockFS.walk()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mockfs.replace_builtins"><code class="docutils literal notranslate"><span class="pre">replace_builtins()</span></code></a></li>
+<li><a class="reference internal" href="#mockfs.restore_builtins"><code class="docutils literal notranslate"><span class="pre">restore_builtins()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 </li>
@@ -444,8 +670,8 @@ replacing functions from the <a class="reference external" href="https://docs.py
     </aside>
   </div>
 </div><script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
     </body>
 </html>
